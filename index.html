@@ -29,74 +29,93 @@
 <body class="bg-gray-100 text-gray-800">
 
     <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-4xl">
-        <header class="text-center mb-8">
-            <h1 class="text-3xl sm:text-4xl font-bold text-indigo-600">University Cafeteria Portal</h1>
-            <p class="text-gray-600 mt-2">Manage student funds and transactions seamlessly.</p>
-        </header>
-
-        <!-- View Toggler -->
-        <div class="flex justify-center mb-8 bg-gray-200 rounded-lg p-1 shadow-inner">
-            <button id="admin-tab" class="tab-button flex-1 py-2 px-4 rounded-md font-semibold focus:outline-none">Admin</button>
-            <button id="cafeteria-tab" class="tab-button flex-1 py-2 px-4 rounded-md font-semibold focus:outline-none">Cafeteria</button>
-        </div>
-
-        <!-- Message Display -->
-        <div id="message-box" class="mb-6 p-4 rounded-lg text-center font-medium" style="display: none;"></div>
-
-        <!-- Admin View -->
-        <div id="admin-view" class="view space-y-8 p-6 bg-white rounded-xl shadow-lg">
-            <h2 class="text-2xl font-semibold text-gray-700 border-b pb-3">Admin Panel</h2>
-            
-            <!-- Add Money Section -->
+        
+        <!-- Login View -->
+        <div id="login-view" class="view active bg-white p-8 rounded-xl shadow-lg max-w-md mx-auto">
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Admin & Cafeteria Login</h2>
             <div class="space-y-4">
-                <h3 class="text-xl font-medium text-indigo-600">Add Funds to Student Account</h3>
                 <div>
-                    <label for="admin-student-id" class="block text-sm font-medium text-gray-700 mb-1">Student ID</label>
-                    <input type="text" id="admin-student-id" placeholder="Enter student ID" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                    <input type="text" id="username" placeholder="Enter username" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
                 <div>
-                    <label for="amount-to-add" class="block text-sm font-medium text-gray-700 mb-1">Amount to Add ($)</label>
-                    <input type="number" id="amount-to-add" placeholder="e.g., 50" min="1" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
-                <button id="add-money-btn" class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300 shadow-md">Add Money</button>
-            </div>
-
-            <!-- Reports Section -->
-            <div class="space-y-4 border-t pt-6">
-                 <h3 class="text-xl font-medium text-indigo-600">Check Student Reports</h3>
-                <div>
-                    <label for="report-student-id" class="block text-sm font-medium text-gray-700 mb-1">Student ID</label>
-                    <input type="text" id="report-student-id" placeholder="Enter student ID to get reports" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                </div>
-                <button id="check-reports-btn" class="w-full bg-gray-700 text-white py-3 px-4 rounded-lg font-semibold hover:bg-gray-800 transition duration-300 shadow-md">Check Reports</button>
-                <div id="reports-output" class="mt-6 space-y-4"></div>
+                <button id="login-btn" class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300 shadow-md">Login</button>
             </div>
         </div>
 
-        <!-- Cafeteria View -->
-        <div id="cafeteria-view" class="view space-y-8 p-6 bg-white rounded-xl shadow-lg">
-            <h2 class="text-2xl font-semibold text-gray-700 border-b pb-3">Cafeteria Terminal</h2>
+        <!-- Main Content View (Hidden by default) -->
+        <div id="main-content-view" class="view">
+            <header class="text-center mb-8 flex justify-between items-center">
+                <h1 class="text-3xl sm:text-4xl font-bold text-indigo-600">University Cafeteria Portal</h1>
+                <button id="logout-btn" class="bg-red-500 text-white py-2 px-4 rounded-lg font-semibold hover:bg-red-600 transition duration-300 shadow-md">Logout</button>
+            </header>
 
-            <!-- Transaction Section -->
-            <div class="space-y-4">
-                <h3 class="text-xl font-medium text-green-600">Process Transaction</h3>
-                <div>
-                    <label for="cafe-student-id" class="block text-sm font-medium text-gray-700 mb-1">Student ID</label>
-                    <input type="text" id="cafe-student-id" placeholder="Enter student ID" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500">
-                </div>
-                <button id="check-balance-btn" class="w-full bg-blue-500 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-600 transition duration-300 shadow-md">Fetch Balance</button>
+            <!-- View Toggler -->
+            <div class="flex justify-center mb-8 bg-gray-200 rounded-lg p-1 shadow-inner">
+                <button id="admin-tab" class="tab-button flex-1 py-2 px-4 rounded-md font-semibold focus:outline-none">Admin</button>
+                <button id="cafeteria-tab" class="tab-button flex-1 py-2 px-4 rounded-md font-semibold focus:outline-none">Cafeteria</button>
+            </div>
+
+            <!-- Admin View -->
+            <div id="admin-view" class="view space-y-8 p-6 bg-white rounded-xl shadow-lg">
+                <h2 class="text-2xl font-semibold text-gray-700 border-b pb-3">Admin Panel</h2>
                 
-                <div id="balance-output" class="mt-4 text-center font-semibold text-lg" style="display: none;"></div>
-
-                <div id="subtract-section" class="space-y-4 pt-4 border-t" style="display: none;">
+                <!-- Add Money Section -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-medium text-indigo-600">Add Funds to Student Account</h3>
                     <div>
-                        <label for="amount-to-subtract" class="block text-sm font-medium text-gray-700 mb-1">Amount to Charge ($)</label>
-                        <input type="number" id="amount-to-subtract" placeholder="e.g., 12.50" min="0.01" step="0.01" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                        <label for="admin-student-id" class="block text-sm font-medium text-gray-700 mb-1">Student ID</label>
+                        <input type="text" id="admin-student-id" placeholder="Enter student ID" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
-                    <button id="subtract-money-btn" class="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 transition duration-300 shadow-md">Complete Purchase</button>
+                    <div>
+                        <label for="amount-to-add" class="block text-sm font-medium text-gray-700 mb-1">Amount to Add ($)</label>
+                        <input type="number" id="amount-to-add" placeholder="e.g., 50" min="1" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <button id="add-money-btn" class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300 shadow-md">Add Money</button>
+                </div>
+
+                <!-- Reports Section -->
+                <div class="space-y-4 border-t pt-6">
+                     <h3 class="text-xl font-medium text-indigo-600">Check Student Reports</h3>
+                    <div>
+                        <label for="report-student-id" class="block text-sm font-medium text-gray-700 mb-1">Student ID</label>
+                        <input type="text" id="report-student-id" placeholder="Enter student ID to get reports" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <button id="check-reports-btn" class="w-full bg-gray-700 text-white py-3 px-4 rounded-lg font-semibold hover:bg-gray-800 transition duration-300 shadow-md">Check Reports</button>
+                    <div id="reports-output" class="mt-6 space-y-4"></div>
+                </div>
+            </div>
+
+            <!-- Cafeteria View -->
+            <div id="cafeteria-view" class="view space-y-8 p-6 bg-white rounded-xl shadow-lg">
+                <h2 class="text-2xl font-semibold text-gray-700 border-b pb-3">Cafeteria Terminal</h2>
+
+                <!-- Transaction Section -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-medium text-green-600">Process Transaction</h3>
+                    <div>
+                        <label for="cafe-student-id" class="block text-sm font-medium text-gray-700 mb-1">Student ID</label>
+                        <input type="text" id="cafe-student-id" placeholder="Enter student ID" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                    </div>
+                    <button id="check-balance-btn" class="w-full bg-blue-500 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-600 transition duration-300 shadow-md">Fetch Balance</button>
+                    
+                    <div id="balance-output" class="mt-4 text-center font-semibold text-lg" style="display: none;"></div>
+
+                    <div id="subtract-section" class="space-y-4 pt-4 border-t" style="display: none;">
+                        <div>
+                            <label for="amount-to-subtract" class="block text-sm font-medium text-gray-700 mb-1">Amount to Charge ($)</label>
+                            <input type="number" id="amount-to-subtract" placeholder="e.g., 12.50" min="0.01" step="0.01" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        <button id="subtract-money-btn" class="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 transition duration-300 shadow-md">Complete Purchase</button>
+                    </div>
                 </div>
             </div>
         </div>
+         <!-- Message Display -->
+        <div id="message-box" class="mt-6 p-4 rounded-lg text-center font-medium" style="display: none;"></div>
     </div>
 
     <script type="module">
@@ -122,8 +141,11 @@
         const db = getFirestore(app);
         setLogLevel('debug'); 
 
-        // Get the app ID from the environment to construct correct database paths.
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        // --- Client-Side Credentials ---
+        const ADMIN_USERNAME = 'admin';
+        const ADMIN_PASSWORD = 'wellgirlies';
 
         // --- Authentication ---
         async function initializeAuth() {
@@ -141,9 +163,9 @@
 
         onAuthStateChanged(auth, user => {
             if (user) {
-                console.log("Authentication successful. User ID:", user.uid);
+                console.log("Firebase Authentication successful. User ID:", user.uid);
             } else {
-                console.log("User is not signed in.");
+                console.log("Firebase user is not signed in.");
             }
         });
         
@@ -151,6 +173,13 @@
 
 
         // --- UI Element References ---
+        const loginView = document.getElementById('login-view');
+        const mainContentView = document.getElementById('main-content-view');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('login-btn');
+        const logoutBtn = document.getElementById('logout-btn');
+
         const adminTab = document.getElementById('admin-tab');
         const cafeteriaTab = document.getElementById('cafeteria-tab');
         const adminView = document.getElementById('admin-view');
@@ -180,11 +209,6 @@
             cafeteriaTab.classList.toggle('active', view === 'cafeteria');
             clearMessagesAndInputs();
         }
-        
-        switchView('admin');
-
-        adminTab.addEventListener('click', () => switchView('admin'));
-        cafeteriaTab.addEventListener('click', () => switchView('cafeteria'));
 
         function showMessage(message, type = 'info') {
             messageBox.textContent = message;
@@ -194,7 +218,7 @@
                 success: 'bg-green-100 text-green-700',
                 info: 'bg-blue-100 text-blue-700'
             };
-            messageBox.className = `mb-6 p-4 rounded-lg text-center font-medium ${colors[type] || colors.info}`;
+            messageBox.className = `mt-6 p-4 rounded-lg text-center font-medium ${colors[type] || colors.info}`;
         }
 
         function clearMessagesAndInputs() {
@@ -209,18 +233,39 @@
             }
         }
 
+        // --- Login/Logout Logic ---
+        loginBtn.addEventListener('click', () => {
+            const user = usernameInput.value;
+            const pass = passwordInput.value;
+
+            if (user === ADMIN_USERNAME && pass === ADMIN_PASSWORD) {
+                loginView.classList.remove('active');
+                mainContentView.classList.add('active');
+                switchView('admin'); // Default to admin view after login
+                passwordInput.value = ''; // Clear password field
+                messageBox.style.display = 'none';
+            } else {
+                showMessage('Invalid username or password.', 'error');
+            }
+        });
+        
+        logoutBtn.addEventListener('click', () => {
+            mainContentView.classList.remove('active');
+            loginView.classList.add('active');
+            usernameInput.value = '';
+            messageBox.style.display = 'none';
+        });
+
+
+        adminTab.addEventListener('click', () => switchView('admin'));
+        cafeteriaTab.addEventListener('click', () => switchView('cafeteria'));
+
         // --- Firebase Firestore Logic ---
-        // This is the base path for all data in this app, ensuring it doesn't conflict with other apps.
         const basePath = `artifacts/${appId}/public/data/students`;
 
-        // Helper to get a reference to a student's document
         const getStudentDocRef = (studentId) => doc(db, basePath, studentId.trim());
-        // Helper to get a reference to a student's transaction collection
         const getTransactionsColRef = (studentId) => collection(db, basePath, studentId.trim(), "transactions");
 
-        /**
-         * Adds money to a student's account. Creates the student if they don't exist.
-         */
         addMoneyBtn.addEventListener('click', async () => {
             const studentId = adminStudentIdInput.value;
             const amount = parseFloat(amountToAddInput.value);
@@ -259,9 +304,6 @@
             }
         });
 
-        /**
-         * Fetches and displays a student's balance and transaction history.
-         */
         checkReportsBtn.addEventListener('click', () => {
             const studentId = reportStudentIdInput.value;
             if (!studentId) {
@@ -321,9 +363,6 @@
             });
         });
 
-        /**
-         * Checks the balance for a student in the cafeteria view.
-         */
         checkBalanceBtn.addEventListener('click', async () => {
             const studentId = cafeStudentIdInput.value;
             if (!studentId) {
@@ -351,9 +390,6 @@
             }
         });
 
-        /**
-         * Subtracts money from a student's account for a purchase.
-         */
         subtractMoneyBtn.addEventListener('click', async () => {
             const studentId = cafeStudentIdInput.value;
             const amountToSubtract = parseFloat(amountToSubtractInput.value);
